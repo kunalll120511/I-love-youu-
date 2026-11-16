@@ -1,0 +1,740 @@
+!DOCTYPE html>
+<html lang="en">
+<head><
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our One Month Anniversary 💗</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Georgia, serif;
+  min-height: 100vh;
+  overflow: hidden;
+  color: #a52e65;
+  background: linear-gradient(135deg,#ffe0ec,#ffb9d2,#fff0f6);
+}
+
+#hearts {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.heart {
+  position: absolute;
+  bottom: -40px;
+  animation: floatUp linear infinite;
+  opacity: .7;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0) rotate(0); opacity: 0; }
+  20% { opacity: .8; }
+  100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+}
+
+header {
+  height: 7vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  letter-spacing: 3px;
+  position: relative;
+  z-index: 2;
+}
+
+#book {
+  width: min(92vw,440px);
+  height: 86vh;
+  max-height: 850px;
+  margin: auto;
+  position: relative;
+  perspective: 1200px;
+  z-index: 1;
+}
+
+.page {
+  position: absolute;
+  inset: 0;
+  display: none;
+  padding: 24px 18px;
+  border: 2px solid white;
+  border-radius: 22px;
+  background: linear-gradient(145deg,#fffafd,#ffeaf2);
+  box-shadow: 0 12px 35px #bd568455,
+              inset 0 0 20px #ffc6dc77;
+  text-align: center;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.page::-webkit-scrollbar {
+  display: none;
+}
+
+.page.active {
+  display: block;
+  animation: pageEnter .65s ease both;
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: perspective(900px) rotateY(-15deg) translateX(25px) scale(.94);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(900px) rotateY(0) translateX(0) scale(1);
+  }
+}
+page-number {
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: #d77b9e;
+  margin-bottom: 15px;
+}
+
+h1 {
+  font-size: clamp(32px,9vw,45px);
+  color: #e63e82;
+  text-shadow: 2px 3px 12px #ffb7d1;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 27px;
+  color: #d83b79;
+  margin: 13px 0;
+}
+
+p {
+  line-height: 1.8;
+}
+
+.cover {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.cover-heart {
+  font-size: 75px;
+  animation: heartbeat 1.3s infinite;
+}
+
+@keyframes heartbeat {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.23); }
+}
+
+.small-title {
+  font-size: 10px;
+  letter-spacing: 4px;
+  margin: 15px 0;
+}
+
+.love-text {
+  font-size: 16px;
+  margin-top: 15px;
+}
+
+.timer-title {
+  margin-top: 28px;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+.timer {
+  display: flex;
+  gap: 7px;
+  width: 100%;
+  margin-top: 14px;
+}
+
+.timer div {
+  flex: 1;
+  background: linear-gradient(145deg,#ffb6d2,#ed5994);
+  color: white;
+  padding: 13px 3px;
+  border-radius: 14px;
+  box-shadow: 0 5px 13px #e88aaa;
+}
+
+.timer span {
+  display: block;
+  font-size: clamp(18px,5vw,25px);
+  font-weight: bold;
+}
+
+.timer small {
+  font-size: 9px;
+}
+
+.forever {
+  margin-top: 24px;
+  font-style: italic;
+  font-size: 14px;
+}
+
+.photo-page {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+}
+
+.photo-page.active {
+  display: flex;
+}
+
+.photo-frame {
+  width: 100%;
+  max-width: 340px;
+  aspect-ratio: 4 / 5;
+  border: 4px solid white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px #d76d9877;
+  background: #ffd5e5;
+  animation: photoGlow 3s infinite alternate;
+}
+
+@keyframes photoGlow {
+  from { box-shadow: 0 5px 15px #e58bad66; }
+  to { box-shadow: 0 8px 30px #ed70a8cc; }
+}
+
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.compliment {
+  font-size: 17px;
+  font-style: italic;
+  margin-top: 20px;
+  padding: 0 8px;
+  animation: textReveal 1.2s ease both;
+}
+
+@keyframes textReveal {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.decorative {
+  font-size: 38px;
+  margin: 20px 0;
+  animation: heartbeat 2s infinite;
+}
+
+.quote {
+  font-size: 22px;
+  line-height: 1.8;
+  font-style: italic;
+  margin-top: 45px;
+  animation: textReveal 1s ease both;
+}
+
+.note-card {
+  background: #ffe0ec;
+  padding: 25px 17px;
+  border-radius: 18px;
+  margin-top: 25px;
+  box-shadow: inset 0 0 15px #f8b4cf;
+  animation: cardFloat 3s ease-in-out infinite;
+}
+
+@keyframes cardFloat {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.envelope {
+  font-size: 85px;
+  margin: 25px;
+  cursor: pointer;
+  animation: heartbeat 1.5s infinite;
+}
+
+.letter-content {
+  display: none;
+  text-align: left;
+  line-height: 1.9;
+  background: white;
+  padding: 18px;
+  border-radius: 13px;
+  margin-top: 15px;
+}
+
+.fingerprint {
+  font-size: 90px;
+  margin: 35px 0 15px;
+  display: inline-block;
+  padding: 20px;
+  border: 3px solid #ed78a8;
+  border-radius: 50%;
+  box-shadow: 0 0 25px #ffb1cf;
+  touch-action: none;
+  user-select: none;
+}
+
+.reveal {
+  display: none;
+  font-size: 38px;
+  color: #e52e78;
+  font-weight: bold;
+  margin-top: 30px;
+  animation: revealLove 1s ease;
+}
+
+@keyframes revealLove {
+  from { transform: scale(.2) rotate(-10deg); opacity: 0; }
+  to { transform: scale(1) rotate(0); opacity: 1; }
+}
+
+#pageCounter {
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+  font-size: 11px;
+  color: #c36b8d;
+}
+
+#hint {
+  height: 7vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  letter-spacing: 1px;
+  position: relative;
+  z-index: 2;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="hearts"></div>
+
+<header>♡ OUR LITTLE LOVE STORY ♡</header>
+
+<main id="book">
+
+<!-- PAGE 1: ANNIVERSARY -->
+<section class="page active">
+<div class="cover">
+
+<div class="cover-heart">💗</div>
+
+<p class="small-title">A SPECIAL DAY FOR US</p>
+
+<h1>HAPPY ONE MONTH ANNIVERSARY</h1>
+
+<p class="love-text">
+One month of love, laughter and beautiful memories ❤️
+</p>
+
+<div class="decorative">🌷 💕 🌷</div>
+
+<p class="timer-title">OUR BEAUTIFUL JOURNEY</p>
+
+<div class="timer">
+<div><span id="days">00</span><small>Days</small></div>
+<div><span id="hours">00</span><small>Hours</small></div>
+<div><span id="minutes">00</span><small>Minutes</small></div>
+<div><span id="seconds">00</span><small>Seconds</small></div>
+</div>
+
+<p class="forever">
+One month completed, forever to go. 💞
+</p>
+
+</div>
+</section>
+
+<!-- PAGE 2 -->
+<section class="page photo-page">
+<p class="page-number">OUR MEMORY • 01</p>
+<h2>Your Beautiful Eyes 💗</h2>
+<div class="photo-frame">
+<img src="https://yourimageshare.com/ib/W7NqOF6iKW.jpg" alt="Memory 1">
+</div>
+<p class="compliment">
+"eyes have found their favourite destination." ❤️
+</p>
+<div class="decorative">🌸</div>
+</section>
+
+<!-- PAGE 3 -->
+<section class="page photo-page">
+<p class="page-number">OUR MEMORY • 02</p>
+<h2>My Happiness 🌷</h2>
+<div class="photo-frame">
+<img src="https://yourimageshare.com/ib/XYneJ4Q7Sh.jpg" alt="Memory 2">
+</div>
+<p class="compliment">
+"You're the prettiest thought in my mind.."
+</p>
+<div class="decorative">💞</div>
+</section>
+
+<!-- PAGE 4 -->
+<section class="page photo-page">
+<p class="page-number">OUR MEMORY • 03</p>
+<h2>My Favourite View ✨</h2>
+<div class="photo-frame">
+<img src="https://yourimageshare.com/ib/alL64tmZuW.jpg" alt="Memory 3">
+</div>
+<p class="compliment">
+"You're not just beautiful, you're my favourite view."
+</p>
+<div class="decorative">🌹</div>
+</section>
+
+<!-- PAGE 5 -->
+<section class="page photo-page">
+<p class="page-number">OUR MEMORY • 04</p>
+<h2>A Little Magic 🦋</h2>
+<div class="photo-frame">
+<img src="https://yourimageshare.com/ib/JcyZIm3nPq.jpg" alt="Memory 4">
+</div>
+<p class="compliment">
+"You have a beautiful way of turning little moments into unforgettable memories."
+</p>
+<div class="decorative">🦋</div>
+</section>
+
+<!-- PAGE 6 -->
+<section class="page photo-page">
+<p class="page-number">OUR MEMORY • 05</p>
+<h2>My Sweetest Memory 💕</h2>
+<div class="photo-frame">
+<img src="https://yourimageshare.com/ib/qurN4G31Jg.jpg" alt="Memory 5">
+</div>
+<p class="compliment">
+"Some memories never need a filter because the happiness in them is already beautiful."
+</p>
+<div class="decorative">💖</div>
+</section>
+
+<!-- PAGE 7 -->
+<section class="page photo-page">
+<p class="page-number">OUR MEMORY • 06</p>
+<h2>My Favourite Person 🌙</h2>
+<div class="photo-frame">
+<img src="https://yourimageshare.com/ib/0F1QztzMfW.jpg" alt="Memory 6">
+</div>
+<p class="compliment">
+"One picture, a thousand reasons to fall for you.."
+</p>
+<div class="decorative">🌙</div>
+</section>
+
+<!-- PAGE 8 -->
+<section class="page photo-page">
+<p class="page-number">OUR MEMORY • 07</p>
+<h2>Endless Happiness 🌼</h2>
+<div class="photo-frame">
+<img src="https://yourimageshare.com/ib/FzhORaY7Lq.jpg" alt="Memory 7">
+</div>
+<p class="compliment">
+"I hope you always see the wonderful person that you are and never forget how special you are."
+</p>
+<div class="decorative">🌼</div>
+</section>
+
+<!-- PAGE 9 -->
+<section class="page photo-page">
+<p class="page-number">OUR MEMORY • 08</p>
+<h2>Our Little World 💗</h2>
+<div class="photo-frame">
+<img src="https://yourimageshare.com/ib/aPFpUSAeqJ.jpg" alt="Memory 8">
+</div>
+<p class="compliment">
+"Even the smallest moments become treasures when they are filled with laughter and kindness."
+</p>
+<div class="decorative">💗</div>
+</section>
+
+<!-- PAGE 10 -->
+<section class="page photo-page">
+<p class="page-number">OUR MEMORY • 09</p>
+<h2>Forever Remembered 🌹</h2>
+<div class="photo-frame">
+<img src="https://yourimageshare.com/ib/FLWwFvtcxO.jpg" alt="Memory 9">
+</div>
+<p class="compliment">
+"If I could save one thing from today, it would be the happiness of this beautiful memory."
+</p>
+<div class="decorative">🌹</div>
+</section>
+
+<!-- PAGE 11 -->
+<section class="page photo-page">
+<p class="page-number">OUR MEMORY • 10</p>
+<h2>A Beautiful Beginning 💞</h2>
+<div class="photo-frame">
+<img src="https://yourimageshare.com/ib/uh9AolXDcI.jpg" alt="Memory 10">
+</div>
+<p class="compliment">
+"One month is just the beginning of a story filled with countless beautiful chapters."
+</p>
+<div class="decorative">💕</div>
+</section>
+
+<!-- PAGE 12 -->
+<section class="page">
+<p class="page-number">A LITTLE NOTE • 12</p>
+<div class="quote">
+"Happy 1 month Anniversary bby😚💕."
+</div>
+<div class="decorative">🌹💗🌹</div>
+<h2>Thank You ❤️</h2>
+<div class="note-card">
+<p>
+Thank you bby mur life t akou ahar babee kolijaa...😚
+  akou ata chance dia r babee aibr aruu kotu jbo nidiu
+  tumkkkk bujisaaa ajii 1 month hol guteu jibon tuu oo thakimmm😘
+</p>
+</div>
+</section>
+
+<!-- PAGE 13 -->
+<section class="page">
+<p class="page-number">OUR STORY • 13</p>
+<div class="decorative">💌</div>
+<h2>One Month of Us</h2>
+<p class="quote">
+"October 17 was the beginning of a beautiful little chapter."
+</p>
+<div class="note-card">
+<p>
+Thirty days of memories, countless reasons
+to smile thank you againn bby ajii 30 days hoise just
+moi guteii jibon tu tumr lgt spend koribo khuju oo hope so
+tumi u khujaaa may be i am not the best or perfect boyfriend
+butt i am trying to become better everyday jaann💗
+</p>
+</div>
+<div class="decorative">🌷💕</div>
+</section>
+
+<!-- PAGE 14 -->
+<section class="page">
+<p class="page-number">A LETTER FOR YOU • 14</p>
+<h2>A Little Love Letter 💌</h2>
+
+<div class="note-card">
+<p>Something special is waiting for you...</p>
+
+<div class="envelope" id="envelope">💌</div>
+
+<p>Tap the envelope to open your letter.</p>
+
+<div class="letter-content" id="letter">
+<h2>Dear kolijaaa😚</h2>
+<p>
+1st Thank you for being with mee bby. porha bhlkee metric 
+tu diaaa dream bur puraa koraa moi asuu tumk xodai support
+koribo xunn jstt tumi dream pura koraa. xukh t thakibo 
+nuwarileu dukh t xodaii thakimm jaan tumr lgtt tention 
+noloba kunu nathakileu moi okle holeu thakimm bujisaa😚
+and be my support system moi tu asu aa tumr lgt in every
+situation career tu bonai lou duitai pist pura ghurim oky
+bhlke porha moi u porhimm tention noloba adha rastat neru diaaa
+tumi u aru najaba deii jaan infact jabou nidiu bujisaa
+i alwayss lovee you bbyy💕😘.
+
+<br><br>
+With lots of love,
+<br>
+Yours kunalll
+</p>
+</div>
+</div>
+</section>
+
+<!-- PAGE 15 -->
+<section class="page">
+<p class="page-number">ONE LAST SURPRISE • 15</p>
+
+<div style="margin-top:45px">
+<h2>One Last Little Surprise 💗</h2>
+
+<p style="margin-top:20px">
+Hold the heart for a moment to unlock
+a special message.
+</p>
+
+<div class="fingerprint" id="fingerprint">♡</div>
+
+<p id="lockMessage">Hold for a moment... 💗</p>
+
+<div class="reveal" id="reveal">
+I LOVE YOU SOO MUCHHH JAANUU❤️
+<div style="font-size:30px;margin-top:15px">
+💗 💕 💖
+</div>
+</div>
+</div>
+</section>
+
+<div id="pageCounter">1 / 15</div>
+</main>
+
+<div id="hint">SWIPE LEFT OR RIGHT TO TURN PAGES ✨</div>
+
+<script>
+
+/* FLOATING HEARTS */
+const heartContainer = document.getElementById("hearts");
+
+for(let i=0;i<22;i++){
+const heart=document.createElement("div");
+heart.className="heart";
+heart.textContent=["💗","💕","💖","♡","🌸"][i%5];
+heart.style.left=Math.random()*100+"%";
+heart.style.animationDuration=(7+Math.random()*8)+"s";
+heart.style.animationDelay=(Math.random()*8)+"s";
+heart.style.fontSize=(15+Math.random()*20)+"px";
+heartContainer.appendChild(heart);
+}
+
+/* TIMER */
+function updateTimer(){
+
+const start=new Date(2026,9,17,0,0,0);
+const now=new Date();
+const diff=Math.max(0,now-start);
+
+const days=Math.floor(diff/86400000);
+const hours=Math.floor(diff/3600000)%24;
+const minutes=Math.floor(diff/60000)%60;
+const seconds=Math.floor(diff/1000)%60;
+
+document.getElementById("days").textContent=days;
+document.getElementById("hours").textContent=String(hours).padStart(2,"0");
+document.getElementById("minutes").textContent=String(minutes).padStart(2,"0");
+document.getElementById("seconds").textContent=String(seconds).padStart(2,"0");
+
+}
+
+updateTimer();
+setInterval(updateTimer,1000);
+
+/* PAGE NAVIGATION */
+const pages=document.querySelectorAll(".page");
+let currentPage=0;
+
+function showPage(index){
+
+if(index<0||index>=pages.length)return;
+
+pages[currentPage].classList.remove("active");
+currentPage=index;
+pages[currentPage].classList.add("active");
+
+document.getElementById("pageCounter").textContent=
+(currentPage+1)+" / "+pages.length;
+
+}
+
+let startX=0;
+let startY=0;
+
+const book=document.getElementById("book");
+
+book.addEventListener("touchstart",function(e){
+startX=e.changedTouches[0].screenX;
+startY=e.changedTouches[0].screenY;
+},{passive:true});
+
+book.addEventListener("touchend",function(e){
+
+if(e.target.closest(".envelope")||
+e.target.closest(".fingerprint"))return;
+
+const dx=e.changedTouches[0].screenX-startX;
+const dy=e.changedTouches[0].screenY-startY;
+
+if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)){
+if(dx<0)showPage(currentPage+1);
+else showPage(currentPage-1);
+}
+
+},{passive:true});
+
+/* LETTER */
+document.getElementById("envelope").addEventListener("click",function(){
+
+const letter=document.getElementById("letter");
+
+if(letter.style.display==="block"){
+letter.style.display="none";
+this.textContent="💌";
+}else{
+letter.style.display="block";
+this.textContent="💖";
+}
+
+});
+
+/* FINGERPRINT SURPRISE */
+const fingerprint=document.getElementById("fingerprint");
+const lockMessage=document.getElementById("lockMessage");
+const reveal=document.getElementById("reveal");
+
+let holdTimer=null;
+
+function startHold(e){
+
+e.preventDefault();
+if(holdTimer)return;
+
+lockMessage.textContent="Keep holding... 💗";
+
+holdTimer=setTimeout(()=>{
+
+reveal.style.display="block";
+lockMessage.textContent="Surprise unlocked! 💕";
+fingerprint.textContent="💖";
+holdTimer=null;
+
+},1200);
+
+}
+
+function cancelHold(){
+
+if(holdTimer){
+clearTimeout(holdTimer);
+holdTimer=null;
+lockMessage.textContent="Try holding again 💗";
+}
+
+}
+
+fingerprint.addEventListener("pointerdown",startHold);
+fingerprint.addEventListener("pointerup",cancelHold);
+fingerprint.addEventListener("pointerleave",cancelHold);
+fingerprint.addEventListener("pointercancel",cancelHold);
+
+</script>
+
+</body>
+</html>
